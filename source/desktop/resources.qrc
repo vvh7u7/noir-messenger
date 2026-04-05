@@ -1,0 +1,13 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/">
+        <file>qml/Main.qml</file>
+        <file>qml/Home.qml</file>
+        <file>qml/Chat.qml</file>
+
+        <file>qml/components/Bar.qml</file>
+        <file>qml/components/AppBar.qml</file>
+
+        <file>qml/controls/ChatItem.qml</file>
+    </qresource>
+</RCC>

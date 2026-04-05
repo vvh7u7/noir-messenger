@@ -1,0 +1,15 @@
+build/
+.idea/
+.cache/
+.kdev4/
+noir.kdev4
+*.user
+*.user.*
+CMakeLists.txt.user*
+*.o
+*.so
+*.a
+moc_*.cpp
+moc_*.h
+*.qmlc
+*.jsc
