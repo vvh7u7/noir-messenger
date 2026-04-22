@@ -1,3 +1,6 @@
 [submodule "libs/haqml-theme-engine"]
 	path = libs/haqml-theme-engine
 	url = https://github.com/vvh7u7/haqml-theme-engine.git
+[submodule "libs/noir-protocol"]
+	path = libs/noir-protocol
+	url = https://github.com/vvh7u7/noir-protocol.git
