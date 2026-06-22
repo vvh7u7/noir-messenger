@@ -40,19 +40,22 @@ jobs:
       - name: Force Install Qt 6.7.3 via Local Spec
         run: |
           pip install aqtinstall
-          
-          mkdir -p ./qt_spec/online/qtsdkrepository/all_os/android/qt6_673/
-          curl -L -o ./qt_spec/online/qtsdkrepository/all_os/android/qt6_673/Updates.xml \
-            "https://mirrors.ocf.berkeley.edu/qt/online/qtsdkrepository/all_os/android/qt6_673/Updates.xml"
-          
+            
           mkdir -p ./qt_spec/online/qtsdkrepository/all_os/android/
+            
+
           curl -L -o ./qt_spec/online/qtsdkrepository/all_os/android/Updates.xml \
             "https://mirrors.ocf.berkeley.edu/qt/online/qtsdkrepository/all_os/android/Updates.xml"
+            
+          mkdir -p ./qt_spec/online/qtsdkrepository/all_os/android/qt6/
+          curl -L -o ./qt_spec/online/qtsdkrepository/all_os/android/qt6/Updates.xml \
+            "https://mirrors.ocf.berkeley.edu/qt/online/qtsdkrepository/all_os/android/qt6/Updates.xml"
+            
 
           python3 -m aqt install-qt linux android 6.7.3 android \
-            --base file://$(pwd)/qt_spec/online/qtsdkrepository/ \
+            --base "file://$(pwd)/qt_spec/online/qtsdkrepository/" \
             --outputdir /home/runner/work/noir-messenger/Qt
-          
+            
           echo "Qt6_DIR=/home/runner/work/noir-messenger/Qt/6.7.3/android_arm64_v8a" >> $GITHUB_ENV
           echo "CMAKE_PREFIX_PATH=/home/runner/work/noir-messenger/Qt/6.7.3/android_arm64_v8a" >> $GITHUB_ENV
           echo "/home/runner/work/noir-messenger/Qt/6.7.3/android_arm64_v8a/bin" >> $GITHUB_PATH
