@@ -1,0 +1,50 @@
+{
+  "standard": 1,
+  "meta": {
+    "name": "Dark",
+    "version": "26.6.21",
+    "description": "Standard dark theme...",
+    "authors": [
+      {
+        "name": "Vladyslav Harbar",
+        "email": "vvhfaq@gmail.com"
+      }
+    ]
+  },
+  "assets": {
+    "icons": "material"
+  },
+  "colors": {
+    "primary": "#2196F3",
+    "primaryHover": "#42A5F5",
+
+    "background": "#171717",
+    "surface": "#1E1E1E",
+    "surfaceVariant": "#2D2D2D",
+
+    "textPrimary": "#FFFFFF",
+    "textSecondary": "#B0B0B0",
+    "textDisabled": "#666666",
+
+    "selection": "#2C2C2C",
+    "disabled": "#4F4F4F",
+
+    "border": "#333333",
+    "error": "#F44336",
+    "success": "#4CAF50",
+
+    "unreadBadge": "#00E676"
+  },
+  "spacing": {
+    "xs": 4,
+    "s": 8,
+    "m": 16,
+    "l": 24,
+    "xl": 32
+  },
+  "radius": {
+    "s": 4,
+    "m": 8,
+    "l": 12
+  }
+}

@@ -1,11 +1,10 @@
 import QtQuick
+import QtQuick.Controls
 import QtQuick.Layouts
 
 
 Item {
     id: root
-    width: parent.width
-    height: 40
 
     default property alias contentData: content.data
     property string color: "grey"

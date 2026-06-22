@@ -1,0 +1,16 @@
+[
+    {
+        "id":"1",
+        "name":"Localhost",
+        "url":"ws://localhost:18080/ws",
+        "token":"",
+        "userId":""
+    },
+    {
+        "id":"2",
+        "name":"Nrserver on Render",
+        "url":"https://noir-server.onrender.com/ws",
+        "token":"",
+        "userId":""
+    },
+]

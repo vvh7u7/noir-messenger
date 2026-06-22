@@ -1,0 +1,7 @@
+<!DOCTYPE RCC>
+<RCC>
+    <qresource prefix="/noir"> <!-- Path to themes -->
+        <file>assets/themes/Light.json</file>
+        <file>assets/themes/Dark.json</file>
+    </qresource>
+</RCC>

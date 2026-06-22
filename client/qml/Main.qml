@@ -3,11 +3,16 @@ import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
 
+import ThemeEngine
+
 ApplicationWindow {
     id: root
     height: 650
-    width: 800
-    title: "NoirMessenger"
+    width: 900
+    title: "NoirMessenger - " + (Theme.meta ? Theme.meta["name"] : "NoneTheme")
+    background: Rectangle {
+        color: Theme.color("background")
+    }
     visible: true
 
     property bool isWideMode: width >= 600
@@ -28,6 +33,12 @@ ApplicationWindow {
         SplitView {
             id: splitView
             anchors.fill: parent
+
+            /*Settings {
+                SplitView.preferredWidth: root.homeWidth
+                SplitView.minimumWidth: root.minHomeWidth
+                SplitView.maximumWidth: root.maxHomeWidth
+            }*/
 
             Home {
                 SplitView.preferredWidth: root.homeWidth
