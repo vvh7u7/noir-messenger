@@ -5,6 +5,7 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build-android:
@@ -36,14 +37,16 @@ jobs:
       - name: Install latest CMake
         uses: lukka/get-cmake@latest
 
-      - name: Install Qt 6.9.3 (Android via Mirror)
-        uses: jurplel/install-qt-action@v4
-        with:
-          version: '6.9.3'
-          target: android
-          arch: android
-          mirror: 'http://mirrors.ocf.berkeley.edu/qt/'
-          cache: true
+      - name: Install Qt 6.9.3 via aqtinstall (Direct Mirror)
+        run: |
+          pip install aqtinstall
+          python3 -m aqt install-qt linux android 6.9.3 android \
+            --base https://mirrors.ocf.berkeley.edu/qt/ \
+            --outputdir /home/runner/work/noir-messenger/Qt
+          
+          echo "Qt6_DIR=/home/runner/work/noir-messenger/Qt/6.9.3/android_arm64_v8a" >> $GITHUB_ENV
+          echo "CMAKE_PREFIX_PATH=/home/runner/work/noir-messenger/Qt/6.9.3/android_arm64_v8a" >> $GITHUB_ENV
+          echo "/home/runner/work/noir-messenger/Qt/6.9.3/android_arm64_v8a/bin" >> $GITHUB_PATH
 
       - name: Configure CMake for Android
         run: |
