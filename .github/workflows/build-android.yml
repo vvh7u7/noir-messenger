@@ -36,12 +36,13 @@ jobs:
       - name: Install latest CMake
         uses: lukka/get-cmake@latest
 
-      - name: Install Qt 6.7.3 (Android)
+      - name: Install Qt 6.9.3 (Android via Mirror)
         uses: jurplel/install-qt-action@v4
         with:
-          version: '6.7.3'
+          version: '6.9.3'
           target: android
           arch: android
+          mirror: 'http://mirrors.ocf.berkeley.edu/qt/'
           cache: true
 
       - name: Configure CMake for Android
