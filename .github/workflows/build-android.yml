@@ -23,13 +23,15 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Install Android NDK & Ninja
+      - name: Install Ninja
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y ninja-build
-          uses: android-actions/setup-android@v3
-          with:
-            ndk-version: '26.1.10909125'
+
+      - name: Install Android NDK
+        uses: android-actions/setup-android@v3
+        with:
+          ndk-version: '26.1.10909125'
 
       - name: Install latest CMake
         uses: lukka/get-cmake@latest
