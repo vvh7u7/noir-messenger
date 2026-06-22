@@ -2,7 +2,7 @@ name: Build and Package Noir Messenger
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "master" ]
     paths:
       - 'client/**'
       - 'libs/**'
@@ -10,7 +10,7 @@ on:
     tags:
       - 'v*'
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "master" ]
     paths:
       - 'client/**'
       - 'libs/**'
