@@ -37,26 +37,23 @@ jobs:
       - name: Install latest CMake
         uses: lukka/get-cmake@latest
 
-      - name: Install Qt 6.9.3 via Host Override
+      - name: Install Qt 6.7.3 via Host Override
         run: |
-          # Находим IP-адрес зеркала Беркли
           MIRROR_IP=$(dig +short mirrors.ocf.berkeley.edu | tail -n1)
           if [ -z "$MIRROR_IP" ]; then
-              MIRROR_IP=$(nslookup mirrors.ocf.berkeley.edu | awk '/^Address: / { print $2 }' | tail -n1)
+            MIRROR_IP=$(nslookup mirrors.ocf.berkeley.edu | awk '/^Address: / { print $2 }' | tail -n1)
           fi
-            
+          
           echo "$MIRROR_IP download.qt.io" | sudo tee -a /etc/hosts
           echo "$MIRROR_IP mirrors.qt.io" | sudo tee -a /etc/hosts
           
-          
           pip install aqtinstall
-          python3 -m aqt install-qt linux android 6.9.3 android \
+          python3 -m aqt install-qt linux android 6.7.3 android \
             --outputdir /home/runner/work/noir-messenger/Qt
-            
           
-          echo "Qt6_DIR=/home/runner/work/noir-messenger/Qt/6.9.3/android_arm64_v8a" >> $GITHUB_ENV
-          echo "CMAKE_PREFIX_PATH=/home/runner/work/noir-messenger/Qt/6.9.3/android_arm64_v8a" >> $GITHUB_ENV
-          echo "/home/runner/work/noir-messenger/Qt/6.9.3/android_arm64_v8a/bin" >> $GITHUB_PATH
+          echo "Qt6_DIR=/home/runner/work/noir-messenger/Qt/6.7.3/android_arm64_v8a" >> $GITHUB_ENV
+          echo "CMAKE_PREFIX_PATH=/home/runner/work/noir-messenger/Qt/6.7.3/android_arm64_v8a" >> $GITHUB_ENV
+          echo "/home/runner/work/noir-messenger/Qt/6.7.3/android_arm64_v8a/bin" >> $GITHUB_PATH
 
       - name: Configure CMake for Android
         run: |
