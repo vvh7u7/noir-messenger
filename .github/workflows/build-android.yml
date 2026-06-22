@@ -32,9 +32,9 @@ jobs:
         uses: lukka/get-cmake@latest
 
       - name: Check available Qt versions
-          run: |
-            pip install aqtinstall
-            python3 -m aqt list-qt linux android
+        run: |
+          pip install aqtinstall
+          python3 -m aqt list-qt linux android
 
       - name: Configure CMake for Android
         run: |
