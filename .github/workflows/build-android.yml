@@ -31,13 +31,10 @@ jobs:
       - name: Install latest CMake & Ninja
         uses: lukka/get-cmake@latest
 
-      - name: Install Qt 6.9.0 (Android)
-        uses: jurplel/install-qt-action@v4
-        with:
-          version: '6.9.0'
-          target: android
-          arch: android
-          cache: true
+      - name: Check available Qt versions
+          run: |
+            pip install aqtinstall
+            python3 -m aqt list-qt linux android
 
       - name: Configure CMake for Android
         run: |
