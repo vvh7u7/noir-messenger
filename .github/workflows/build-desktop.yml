@@ -1,14 +1,14 @@
-name: Build Desktop Platforms
+name: Build and Package Noir Client Desktop
 
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "main", "master" ]
+    branches: [ "main" ]
 
 jobs:
   build-desktop:
-    name: Desktop ${{ matrix.os }}
+    name: Noir Desktop ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -61,11 +61,23 @@ jobs:
         if: runner.os == 'macOS'
         run: |
           mkdir -p deploy
+          echo "=== Checking where macOS binary is located ==="
+          ls -la build/ || true
+          ls -la build/client/ || true
+
+          # Если CMake всё же собрал бандл .app (на будущее):
           if [ -d "build/client/NoirMessenger.app" ]; then
             macdeployqt build/client/NoirMessenger.app -qmldir=client/qml -always-overwrite -verbose=1
             cp -R build/client/NoirMessenger.app deploy/
+          # Иначе забираем обычный скомпилированный бинарник:
+          elif [ -f "build/client/NoirMessenger" ]; then
+            cp build/client/NoirMessenger deploy/NoirMessenger
+            echo "Found plain binary on macOS, deploying without macdeployqt"
+          elif [ -f "build/NoirMessenger" ]; then
+            cp build/NoirMessenger deploy/NoirMessenger
+            echo "Found plain binary in root build folder"
           else
-            echo "ERROR: NoirMessenger.app not found!"
+            echo "ERROR: NoirMessenger not found on macOS!"
             exit 1
           fi
 
