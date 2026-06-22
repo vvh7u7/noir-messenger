@@ -37,18 +37,20 @@ jobs:
       - name: Install latest CMake
         uses: lukka/get-cmake@latest
 
-      - name: Install Qt 6.7.3 via Host Override
+      - name: Force Install Qt 6.7.3 via Local Spec
         run: |
-          MIRROR_IP=$(dig +short mirrors.ocf.berkeley.edu | tail -n1)
-          if [ -z "$MIRROR_IP" ]; then
-            MIRROR_IP=$(nslookup mirrors.ocf.berkeley.edu | awk '/^Address: / { print $2 }' | tail -n1)
-          fi
-          
-          echo "$MIRROR_IP download.qt.io" | sudo tee -a /etc/hosts
-          echo "$MIRROR_IP mirrors.qt.io" | sudo tee -a /etc/hosts
-          
           pip install aqtinstall
+          
+          mkdir -p ./qt_spec/online/qtsdkrepository/all_os/android/qt6_673/
+          curl -L -o ./qt_spec/online/qtsdkrepository/all_os/android/qt6_673/Updates.xml \
+            "https://mirrors.ocf.berkeley.edu/qt/online/qtsdkrepository/all_os/android/qt6_673/Updates.xml"
+          
+          mkdir -p ./qt_spec/online/qtsdkrepository/all_os/android/
+          curl -L -o ./qt_spec/online/qtsdkrepository/all_os/android/Updates.xml \
+            "https://mirrors.ocf.berkeley.edu/qt/online/qtsdkrepository/all_os/android/Updates.xml"
+
           python3 -m aqt install-qt linux android 6.7.3 android \
+            --base file://$(pwd)/qt_spec/online/qtsdkrepository/ \
             --outputdir /home/runner/work/noir-messenger/Qt
           
           echo "Qt6_DIR=/home/runner/work/noir-messenger/Qt/6.7.3/android_arm64_v8a" >> $GITHUB_ENV
